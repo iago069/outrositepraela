@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Srta. Marion 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .box {
+      background: rgba(0, 0, 0, 0.4);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      animation: float 6s infinite ease-in-out;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+
+    img {
+      width: 240px;
+      border-radius: 20px;
+      margin: 20px 0;
+      animation: pulse 4s infinite;
+      box-shadow: 0 0 15px rgba(0,0,0,0.6);
+    }
+
+    #mensagem {
+      font-size: 1.4rem;
+      margin-top: 20px;
+      min-height: 50px;
+      transition: opacity 1s ease;
+    }
+
+    button {
+      background-color: #ff7675;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      color: white;
+      cursor: pointer;
+      margin-top: 20px;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d63031;
+      transform: scale(1.1);
+    }
+
+    #legenda {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+      font-size: 1.6rem;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.8);
+      color: #fff;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h1>Oi, Srta. Marion! 💖</h1>
+  <img src="NÓS.jpeg" alt="Nossa Foto">
+  <div id="mensagem">Clique no botão e veja o quanto você é especial!</div>
+  <button onclick="mostrarMensagens()">Começar!</button>
+  <audio id="musica" src="Tim Maia - Eu Amo Você(MP3_128K).mp3"></audio>
+
+</div>
+
+<div id="legenda"></div>
+
+
+<script>
+  const mensagens = [
+    "Você ilumina qualquer lugar! 🌟",
+    "Seu sorriso vale mais que diamantes! 💎",
+    "A vida é mais bonita só por sua causa. 🌼",
+    "Tudo fica leve quando você está por perto! ☁️",
+    "Seu jeitinho é a definição de encantadora. 🎀",
+    "Nunca se esqueça o quanto você é especial! 🌷",
+    "Você faz meu mundo brilhar! 🌟",
+    "Com você, todo momento é mágico. ✨",
+    "Cada olhar seu me faz sorrir. 😁",
+    "Seu abraço é o meu lugar preferido! 🤗",
+    "Em você eu encontrei o meu porto seguro. ⚓️"
+  ];
+
+  const letraMusica = [
+    { tempo: 0, texto: "Eu amo você..." },
+    { tempo: 7, texto: "Eu amo você!" },
+    { tempo: 14, texto: "Eu não sei dizer o que mudou..." },
+    { tempo: 21, texto: "Desde que eu te vi..." },
+    { tempo: 28, texto: "Tudo é mais bonito..." },
+    { tempo: 35, texto: "Você me faz sorrir!" },
+    { tempo: 42, texto: "Eu amo você..." },
+    { tempo: 50, texto: "Eu amo você!" },
+    { tempo: 58, texto: "Tim Maia — Eu Amo Você 🎵" },
+    { tempo: 65, texto: "Te amo tanto, você é tudo pra mim!" },
+    { tempo: 72, texto: "Meu coração é seu, para sempre!" },
+    { tempo: 80, texto: "Eu vou te amar por toda minha vida!" },
+    { tempo: 87, texto: "Você é minha paixão, meu amor eterno." },
+    { tempo: 95, texto: "Nosso amor é como uma música sem fim!" },
+    { tempo: 103, texto: "Cada momento com você é especial!" },
+    { tempo: 110, texto: "Nunca vou deixar de te amar!" },
+    { tempo: 118, texto: "Eu amo você, para sempre!" }
+  ];
+
+  let msgIndex = 0;
+  let musicStarted = false;
+
+  function mostrarMensagens() {
+    const texto = document.getElementById("mensagem");
+    texto.innerText = mensagens[msgIndex];
+    msgIndex++;
+
+    if (msgIndex < mensagens.length) {
+      setTimeout(mostrarMensagens, 3000);
+    } else {
+      tocarMusica();
+    }
+  }
+
+  function tocarMusica() {
+    if (musicStarted) return;
+    musicStarted = true;
+    const musica = document.getElementById("musica");
+    const legenda = document.getElementById("legenda");
+    musica.play();
+
+    letraMusica.forEach((linha) => {
+      setTimeout(() => {
+        legenda.innerText = linha.texto;
+      }, linha.tempo * 1000);
+    });
+  }
+</script>
+
+</body>
+</html>
